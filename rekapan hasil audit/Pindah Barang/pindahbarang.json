@@ -1,0 +1,40 @@
+[
+  {
+    "waktu": "2025-11-19T09:24:46.949Z",
+    "kategori": "pindahbarang",
+    "kode_barcode": "00000542",
+    "reason": "Saldo baki tujuan tidak sesuai.",
+    "expected": {
+      "stock_in": ">0",
+      "berat_in": 10.2,
+      "stock_akhir": 1,
+      "berat_akhir": 10.2
+    },
+    "found": {
+      "_id": "691d8c054120af9738de8ba1",
+      "tanggal": "2025-11-19",
+      "kode_barcode": "00000542",
+      "kode_group": "GROUP-TESTING",
+      "kode_dept": "JENIS-TESTING",
+      "kode_gudang": "TOKO",
+      "kode_toko": "BK-NEW2",
+      "stock_awal": 0,
+      "berat_awal": 0,
+      "berat_tambah": 0,
+      "stock_tambah": 0,
+      "stock_out": 0,
+      "berat_out": 0,
+      "stock_in": 1,
+      "berat_in": 20.4,
+      "stock_beli": 0,
+      "berat_beli": 0,
+      "stock_jual": 0,
+      "berat_jual": 0,
+      "stock_hancur": 0,
+      "berat_hancur": 0,
+      "stock_akhir": 2,
+      "berat_akhir": 10.2,
+      "__v": 0
+    }
+  }
+]

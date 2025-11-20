@@ -1,0 +1,19 @@
+[
+  {
+    "waktu": "2025-11-20T04:09:59.900Z",
+    "kategori": "titipan",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "TT-251120-0001",
+      "kategori": "A474C675BF90C9BD85B183",
+      "jumlah_out": 1200000
+    },
+    "detail": {
+      "jenis": "BATAL TITIP",
+      "no_titip_group": "TT-251120-0001",
+      "dp": 1200000
+    }
+  }
+]

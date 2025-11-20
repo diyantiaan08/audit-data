@@ -1,0 +1,35 @@
+[
+  {
+    "waktu": "2025-11-20T03:01:53.661Z",
+    "kategori": "penjualan",
+    "reason": "Barang masih memiliki stok di tm_barang",
+    "kode_barcode": "00000544",
+    "no_faktur_group": "2a55021a-dc9a-46e3-9d16-65472c8f4abd"
+  },
+  {
+    "waktu": "2025-11-20T03:01:53.675Z",
+    "kategori": "penjualan",
+    "reason": "Saldo jual tidak valid",
+    "kode_barcode": "00000544",
+    "no_faktur_group": "2a55021a-dc9a-46e3-9d16-65472c8f4abd"
+  },
+  {
+    "waktu": "2025-11-20T03:01:53.689Z",
+    "kategori": "penjualan",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "2a55021a-dc9a-46e3-9d16-65472c8f4abd",
+      "kategori": "B278C07EC8B1C1B57F",
+      "jenis": "A574C57C",
+      "jumlah_in": 5000000
+    },
+    "detail": {
+      "jenis": "PENJUALAN NORMAL",
+      "no_faktur_group": "2a55021a-dc9a-46e3-9d16-65472c8f4abd",
+      "jenis_pembayaran": "A574C57C",
+      "total_jumlah_rp": 5000000
+    }
+  }
+]

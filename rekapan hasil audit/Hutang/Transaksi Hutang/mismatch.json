@@ -1,0 +1,19 @@
+[
+  {
+    "waktu": "2025-11-20T03:23:15.612Z",
+    "kategori": "hutang",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "TR2-PI25-00003",
+      "kategori": "AA88C675C1B7",
+      "jumlah_out": 7000000
+    },
+    "detail": {
+      "jenis": "HUTANG MASUK",
+      "no_faktur_hutang": "TR2-PI25-00003",
+      "jumlah_hutang": 7000000
+    }
+  }
+]

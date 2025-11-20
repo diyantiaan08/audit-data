@@ -1,0 +1,19 @@
+[
+  {
+    "waktu": "2025-11-19T10:00:33.980Z",
+    "kategori": "service",
+    "reason": "Data keuangan tidak ditemukan",
+    "detail": {
+      "jenis": "BATAL SERVICE",
+      "no_faktur_service": "TR2-SV-251119-0002",
+      "total_bayar": 100000
+    },
+    "expected": {
+      "tanggal": "2025-11-19",
+      "status": "OPEN",
+      "deskripsi": "TR2-SV-251119-0002",
+      "kategori": "A474C675BF90C8B983BE7CB579",
+      "jumlah_out": 100000
+    }
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "waktu": "2025-11-19T09:08:41.615Z",
+    "kategori": "hancurbarang",
+    "kode_barcode": "00000528",
+    "reason": "tm_barang tidak sesuai (status_hancur/stock_on_hand tidak benar)",
+    "expected": {
+      "status_hancur": true,
+      "stock_on_hand": 0
+    },
+    "found": {
+      "status_hancur": false,
+      "stock_on_hand": 1
+    }
+  },
+  {
+    "waktu": "2025-11-19T09:08:41.636Z",
+    "kategori": "hancurbarang",
+    "kode_barcode": "00000528",
+    "reason": "saldo mismatch",
+    "expected": {
+      "stock_hancur": ">0",
+      "berat_hancur": 7.5,
+      "stock_akhir": 0,
+      "berat_akhir": 0
+    },
+    "found": {
+      "_id": "691d30464120af9738de86c7",
+      "tanggal": "2025-11-19",
+      "kode_barcode": "00000528",
+      "kode_group": "GROUP-TESTING",
+      "kode_dept": "JENIS-TESTING",
+      "kode_gudang": "TOKO",
+      "kode_toko": "BAKI-TESTING",
+      "stock_awal": 1,
+      "berat_awal": 7.5,
+      "berat_tambah": 0,
+      "stock_tambah": 0,
+      "stock_out": 0,
+      "berat_out": 0,
+      "stock_in": 0,
+      "berat_in": 0,
+      "stock_beli": 0,
+      "berat_beli": 0,
+      "stock_jual": 0,
+      "berat_jual": 0,
+      "stock_hancur": 0,
+      "berat_hancur": 7.5,
+      "stock_akhir": 1,
+      "berat_akhir": 0,
+      "__v": 0
+    }
+  }
+]

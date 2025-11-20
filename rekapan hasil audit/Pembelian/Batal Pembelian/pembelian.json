@@ -1,0 +1,18 @@
+[
+  {
+    "waktu": "2025-11-20T09:13:24.302Z",
+    "kategori": "pembelian",
+    "reason": "Data kas tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "TR2-FB-251120-0005",
+      "kategori": "A474C675BF90B7B97DB1",
+      "jumlah_in": 5660000
+    },
+    "jenis": "BATAL PEMBELIAN",
+    "no_faktur_group": "5cf1ab3e-d71b-4011-ab70-720e99190f16",
+    "no_faktur_beli": "TR2-FB-251120-0005",
+    "harga": 5660000
+  }
+]

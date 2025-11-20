@@ -1,0 +1,21 @@
+[
+  {
+    "waktu": "2025-11-20T03:56:18.783Z",
+    "kategori": "titipan",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "TT-251120-0001",
+      "kategori": "B67CC67DC3B1C3",
+      "jenis": "A574C57C",
+      "jumlah_in": 1200000
+    },
+    "detail": {
+      "jenis": "TITIPAN MASUK",
+      "no_titip_group": "TT-251120-0001",
+      "jenis_pembayaran": "A574C57C",
+      "jumlah_rp": 1200000
+    }
+  }
+]

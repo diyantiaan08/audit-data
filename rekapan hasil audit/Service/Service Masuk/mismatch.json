@@ -1,0 +1,40 @@
+[
+  {
+    "waktu": "2025-11-19T09:31:56.965Z",
+    "kategori": "service",
+    "reason": "Data keuangan tidak ditemukan",
+    "detail": {
+      "jenis": "SERVICE MASUK",
+      "no_faktur_service": "TR2-SV-251119-0001",
+      "jenis_pembayaran": "A574C57C",
+      "jumlah_rp": 30000
+    },
+    "expected": {
+      "tanggal": "2025-11-19",
+      "status": "OPEN",
+      "deskripsi": "TR2-SV-251119-0001",
+      "kategori": "B578C48ABCB3BA",
+      "jenis": "A574C57C",
+      "jumlah_in": 30000
+    }
+  },
+  {
+    "waktu": "2025-11-19T09:31:56.982Z",
+    "kategori": "service",
+    "reason": "Data keuangan tidak ditemukan",
+    "detail": {
+      "jenis": "SERVICE MASUK",
+      "no_faktur_service": "TR2-SV-251119-0001",
+      "jenis_pembayaran": "B685B382C6B6BAC6",
+      "jumlah_rp": 70000
+    },
+    "expected": {
+      "tanggal": "2025-11-19",
+      "status": "OPEN",
+      "deskripsi": "TR2-SV-251119-0001",
+      "kategori": "B578C48ABCB3BA",
+      "jenis": "B685B382C6B6BAC6",
+      "jumlah_in": 70000
+    }
+  }
+]

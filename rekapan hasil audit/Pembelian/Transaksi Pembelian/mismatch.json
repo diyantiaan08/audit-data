@@ -1,0 +1,17 @@
+[
+  {
+    "waktu": "2025-11-20T08:15:52.444Z",
+    "kategori": "pembelian",
+    "reason": "Data kas tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "37c7fc0e-e3ad-45fb-a05d-50f9b7152008",
+      "kategori": "B278BF76B8BCBEB57F",
+      "jumlah_out": 2800000
+    },
+    "jenis": "TRANSAKSI PEMBELIAN",
+    "no_faktur_group": "37c7fc0e-e3ad-45fb-a05d-50f9b7152008",
+    "totalHarga": 2800000
+  }
+]

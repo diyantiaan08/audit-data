@@ -1,0 +1,21 @@
+[
+  {
+    "waktu": "2025-11-20T02:42:48.505Z",
+    "kategori": "pesanan",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "DP/251120/0001",
+      "kategori": "B674BF76B4B895B8818883B787B4BEB6C2",
+      "jenis": "A574C57C",
+      "jumlah_in": 500000
+    },
+    "detail": {
+      "jenis": "TAMBAH DP PESANAN",
+      "no_pesanan": "DP/251120/0001",
+      "jenis_pembayaran": "A574C57C",
+      "jumlah_rp": 500000
+    }
+  }
+]

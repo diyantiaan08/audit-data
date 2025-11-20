@@ -1,0 +1,19 @@
+[
+  {
+    "waktu": "2025-11-20T03:14:56.830Z",
+    "kategori": "pesanan",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "DP/251120/0004",
+      "kategori": "A474C675BF90C5B984A981B382",
+      "jumlah_out": 2500000
+    },
+    "detail": {
+      "jenis": "BATAL PESANAN",
+      "no_pesanan": "DP/251120/0004",
+      "jumlah_bayar": 2500000
+    }
+  }
+]

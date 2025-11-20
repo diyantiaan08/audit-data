@@ -1,0 +1,28 @@
+[
+  {
+    "waktu": "2025-11-20T06:43:59.109Z",
+    "kategori": "penjualan",
+    "reason": "Barang masih ada stok tm_barang",
+    "kode_barcode": "00000531",
+    "no_faktur_group": "fe30689a-11c5-45e5-aedf-ab17a181c954"
+  },
+  {
+    "waktu": "2025-11-20T06:43:59.138Z",
+    "kategori": "penjualan",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "fe30689a-11c5-45e5-aedf-ab17a181c954",
+      "kategori": "B278C07EC8B1C1B57F",
+      "jenis": "A574C57C",
+      "jumlah_in": 6000000
+    },
+    "detail": {
+      "jenis": "TRANSAKSI PENJUALAN",
+      "no_faktur_group": "fe30689a-11c5-45e5-aedf-ab17a181c954",
+      "jenis_pembayaran": "A574C57C",
+      "total_jumlah_rp": 6000000
+    }
+  }
+]

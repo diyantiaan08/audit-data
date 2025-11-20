@@ -1,0 +1,16 @@
+[
+  {
+    "waktu": "2025-11-20T03:26:55.644Z",
+    "kategori": "hutang",
+    "jenis": "PELUNASAN HUTANG",
+    "no_faktur_hutang": "TR2-PI25-00003",
+    "expected_total": 7010000,
+    "actual_total": 70100001,
+    "rincian_kas": [
+      {
+        "jenis": "A574C57C",
+        "jumlah_in": 70100001
+      }
+    ]
+  }
+]

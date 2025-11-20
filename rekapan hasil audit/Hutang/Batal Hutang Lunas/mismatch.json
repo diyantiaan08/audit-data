@@ -1,0 +1,17 @@
+[
+  {
+    "waktu": "2025-11-20T03:35:18.910Z",
+    "kategori": "hutang",
+    "reason": "Data keuangan tidak ditemukan",
+    "expected": {
+      "tanggal": "2025-11-20",
+      "status": "OPEN",
+      "deskripsi": "TR2-PI25-00003",
+      "kategori": "A474C675BF90BDC985A981B954BFC5C3B584"
+    },
+    "detail": {
+      "jenis": "BATAL PELUNASAN HUTANG",
+      "no_faktur_hutang": "TR2-PI25-00003"
+    }
+  }
+]

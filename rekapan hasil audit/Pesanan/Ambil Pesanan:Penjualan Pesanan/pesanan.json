@@ -1,0 +1,14 @@
+[
+  {
+    "waktu": "2025-11-20T03:01:53.444Z",
+    "kategori": "pesanan",
+    "no_pesanan": "DP/251120/0001",
+    "reason": "Barang belum hilang dari tm_barang"
+  },
+  {
+    "waktu": "2025-11-20T03:01:53.464Z",
+    "kategori": "pesanan",
+    "no_pesanan": "DP/251120/0001",
+    "reason": "Transaksi penjualan tidak ditemukan"
+  }
+]
