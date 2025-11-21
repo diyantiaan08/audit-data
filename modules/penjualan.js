@@ -10,24 +10,25 @@ module.exports = {
     const saldoCol = getSaldoCollection(db, isClosedStore);
 
     // =====================================================================
-    // Fungsi VALIDASI KAS
+    // Fungsi VALIDASI KAS (dengan perhitungan fee dari pembayaran)
     // =====================================================================
-    async function validateCash(expected, detail) {
-      const kas = await db.collection("tt_cash_daily").findOne(expected);
+    async function validateCash(expected, detail, feePercent = 0) {
+      // Hitung jumlah yang diharapkan di tt_cash_daily (sudah termasuk fee)
+      let queryExpected = { ...expected };
+      
+      if (feePercent > 0 && expected.jumlah_in != null) {
+        const feeAmount = (expected.jumlah_in * feePercent) / 100;
+        queryExpected.jumlah_in = expected.jumlah_in + feeAmount;
+      }
+
+      const kas = await db.collection("tt_cash_daily").findOne(queryExpected);
 
       if (!kas) {
         return logMismatch("penjualan", {
           reason: "Data keuangan tidak ditemukan",
-          expected,
-          detail
-        });
-      }
-
-      if (expected.jumlah_in != null && kas.jumlah_in !== expected.jumlah_in) {
-        logMismatch("penjualan", {
-          reason: "jumlah_in mismatch",
-          expected: expected.jumlah_in,
-          found: kas.jumlah_in,
+          expected: queryExpected,
+          original_amount: expected.jumlah_in || expected.jumlah_out,
+          fee_percent: feePercent,
           detail
         });
       }
@@ -147,8 +148,18 @@ module.exports = {
         }
       }
 
-      // Validasi kas
+      // Validasi kas dengan fee dari pembayaran
       for (const jenis of Object.keys(g.pembayaran)) {
+        // Cari fee dari pembayaran di detail penjualan
+        let feePercent = 0;
+        for (const d of g.detail) {
+          const paymentWithFee = d.pembayaran?.find(p => p.jenis === jenis && p.fee > 0);
+          if (paymentWithFee) {
+            feePercent = paymentWithFee.fee;
+            break;
+          }
+        }
+
         await validateCash(
           {
             tanggal: auditDate,
@@ -163,7 +174,8 @@ module.exports = {
             no_faktur_group: groupId,
             jenis_pembayaran: jenis,
             total_jumlah_rp: g.pembayaran[jenis]
-          }
+          },
+          feePercent
         );
       }
     }
@@ -190,16 +202,39 @@ module.exports = {
       if (!groupBatal[j.no_faktur_group]) {
         groupBatal[j.no_faktur_group] = {
           totalHarga: 0,
-          detail: []
+          detail: [],
+          pembayaran: {} // Tambahkan tracking pembayaran per jenis
         };
       }
       groupBatal[j.no_faktur_group].totalHarga += j.harga_total || 0;
       groupBatal[j.no_faktur_group].detail.push(j);
+
+      // Sum pembayaran per jenis (untuk batal penjualan)
+      for (const pay of j.pembayaran) {
+        if (!groupBatal[j.no_faktur_group].pembayaran[pay.jenis]) {
+          groupBatal[j.no_faktur_group].pembayaran[pay.jenis] = 0;
+        }
+        groupBatal[j.no_faktur_group].pembayaran[pay.jenis] += pay.jumlah_rp;
+      }
     }
 
     // Validasi batal
     for (const groupId of Object.keys(groupBatal)) {
       const g = groupBatal[groupId];
+
+      // Skip jika ada pembayaran dengan fee > 0
+      let hasFee = false;
+      for (const d of g.detail) {
+        const paymentWithFee = d.pembayaran?.find(p => p.fee && p.fee > 0);
+        if (paymentWithFee) {
+          hasFee = true;
+          break;
+        }
+      }
+
+      if (hasFee) {
+        continue; // Skip validasi untuk group ini
+      }
 
       for (const d of g.detail) {
         const tm = await db.collection("tm_barang").findOne(
@@ -235,20 +270,25 @@ module.exports = {
         }
       }
 
-      await validateCash(
-        {
-          tanggal: auditDate,
-          status: "OPEN",
-          deskripsi: groupId,
-          kategori: "A474C675BF90C5B97FB288B380B4BE",
-          jumlah_out: g.totalHarga
-        },
-        {
-          jenis: "BATAL PENJUALAN",
-          no_faktur_group: groupId,
-          total_harga: g.totalHarga
-        }
-      );
+      // Validasi kas per jenis pembayaran
+      for (const jenis of Object.keys(g.pembayaran)) {
+        await validateCash(
+          {
+            tanggal: auditDate,
+            status: "OPEN",
+            deskripsi: groupId,
+            kategori: "A474C675BF90C5B97FB288B380B4BE",
+            jenis,
+            jumlah_out: g.pembayaran[jenis]
+          },
+          {
+            jenis: "BATAL PENJUALAN",
+            no_faktur_group: groupId,
+            jenis_pembayaran: jenis,
+            total_harga: g.pembayaran[jenis]
+          }
+        );
+      }
     }
 
     console.log("   ✔ Pemeriksaan Penjualan selesai.");

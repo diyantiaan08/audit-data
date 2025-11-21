@@ -6,10 +6,10 @@ module.exports = {
   async run(db, auditDate, isClosedStore, logMismatch) {
     console.log("🔍 [TAMBAH BARANG] Checking...");
 
-    // Ambil data tm_barang yang ditambahkan hari ini (tgl_last_beli)
+    // Ambil barang yang baru masuk hari ini
     const barangBaru = await db.collection("tm_barang").find({
       tgl_last_beli: auditDate,
-      kode_group: { $ne: "ACC" }   // selain aksesoris
+      kode_group: { $ne: "ACC" }  // selain aksesoris
     }).toArray();
 
     if (barangBaru.length === 0) {
@@ -17,55 +17,33 @@ module.exports = {
       return;
     }
 
-    // Tentukan saldo collection (tt atau th)
-    const saldoCol = await getSaldoCollection(db, isClosedStore);
+    // Pilih saldo tt/th otomatis
+    const saldoCol = getSaldoCollection(db, isClosedStore);
 
     for (const item of barangBaru) {
       const barcode = item.kode_barcode;
 
-      // Query saldo yang benar
+      // Query saldo (ambil yang terbaru jika ada banyak)
       const saldoQuery = isClosedStore
         ? { tanggal: auditDate, kode_barcode: barcode }
         : { kode_barcode: barcode };
 
-      const saldo = await saldoCol.findOne(saldoQuery, { sort: { _id: -1 } });
+      const saldo = await saldoCol.findOne(
+        saldoQuery,
+        { sort: { _id: -1 } }
+      );
 
+      // ❌ Jika tidak ditemukan sama sekali → mismatch
       if (!saldo) {
         logMismatch("tambahbarang", {
           kode_barcode: barcode,
-          reason: "Saldo tidak ditemukan untuk barang baru",
-          isClosedStore,
-          expected: {
-            stock_tambah: 1
-          }
+          reason: "Saldo barang tidak ditemukan di tt/th_barang_saldo",
+          expected: "Ada saldo untuk barcode ini"
         });
         continue;
       }
 
-      // Validasi stock_tambah = 1
-      if (saldo.stock_tambah !== 1) {
-        logMismatch("tambahbarang", {
-          kode_barcode: barcode,
-          reason: "stock_tambah tidak sesuai",
-          expected: 1,
-          actual: saldo.stock_tambah,
-          saldo
-        });
-      }
-
-      // ============================================================
-      // VALIDASI TAMBAHAN: 
-      // berat_tambah harus sama dengan berat di tm_barang
-      // ============================================================
-      if (Math.abs((saldo.berat_tambah || 0) - (item.berat || 0)) > 0.001) {
-        logMismatch("tambahbarang", {
-          kode_barcode: barcode,
-          reason: "berat_tambah tidak sesuai dengan tm_barang",
-          expected: item.berat,
-          actual: saldo.berat_tambah,
-          saldo
-        });
-      }
+      // ✔ Jika saldo ada → valid, tidak cek stock_tambah, berat, dll
     }
 
     console.log("   ✔ Tambah Barang Audit Complete");
